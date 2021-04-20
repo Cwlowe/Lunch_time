@@ -1,0 +1,14 @@
+interface Transactions { 
+  ID__A:  Float 
+  Purchase__B:  String 
+  Price__C:  Float 
+  Tag__D:  String 
+  Date__E:  String 
+}
+type SheetsTransactions implements Transactions {}
+type Query {
+  transactions(q:String!): [Transactions]
+  sheetstransactions(q:String!): [SheetsTransactions]
+    @supplies(query:"transactions")
+    @rest(endpoint:"https://sheets.apis.stepzen.com/18zHBx9nSYTKsIHHWAFncVQ6Hk_PY_Ex8mWbic1K38OU/0")
+}
