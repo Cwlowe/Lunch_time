@@ -6,6 +6,7 @@ import { useState } from 'react';
 import Team from './Team';
 import TechnologyUsed from './TechnologyUsed';
 import MintBeanShoutout from './MintBeanShoutout';
+import AffordLunch from './AffordLunch';
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
@@ -13,6 +14,7 @@ export default function Home() {
 		funds: 0,
 		lastPaid: '2021-04-21',
 		cadence: 0,
+		user: 'Josh',
 	});
 	return (
 		<div className={styles.container}>
@@ -30,24 +32,36 @@ export default function Home() {
 					Get started by editing{' '}
 					<code className={styles.code}>pages/index.js</code>
 				</p>
+				<AffordLunch
+					amount={state.funds}
+					expenses={transactions.filter(
+						(each) =>
+							each.Date__E > state.lastPaid && each.User__F === state.user
+					)}
+					cadence={state.cadence}
+				/>
 				<Salary
 					adjustSalary={(newSal, date, cadence) =>
 						setState({ funds: newSal, lastPaid: date, cadence: cadence })
 					}
-					state={state}
+					curr={state}
 				/>
-				{/* <div className={styles.code}>
-					{transactions.map((item) => {
-						if (item.Date__E > state.lastPaid)
+				<div className={styles.code}>
+					{transactions
+						.filter(
+							(each) =>
+								each.Date__E > state.lastPaid && each.User__F === state.user
+						)
+						.map((item, idx) => {
 							return (
-								<div key={item.ID__A || 0}>
+								<div key={idx}>
 									<p>
 										{item.Tag__D} - {item.Price__C} - {item.Date__E}
 									</p>
 								</div>
 							);
 					})}
-				</div> */}
+				</div>
 				<Team />
 				<TechnologyUsed />
 				<MintBeanShoutout />
