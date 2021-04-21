@@ -10,6 +10,7 @@ export default function Home() {
 		funds: 0,
 		lastPaid: '2021-04-21',
 		cadence: 0,
+		// user: 'Calvin',
 	});
 	return (
 		<div className={styles.container}>
@@ -31,13 +32,13 @@ export default function Home() {
 					adjustSalary={(newSal, date, cadence) =>
 						setState({ funds: newSal, lastPaid: date, cadence: cadence })
 					}
-					state={state}
+					curr={state}
 				/>
 				<div className={styles.code}>
-					{transactions.map((item) => {
+					{transactions.map((item, idx) => {
 						if (item.Date__E > state.lastPaid)
 							return (
-								<div key={item.ID__A || 0}>
+								<div key={idx}>
 									<p>
 										{item.Tag__D} - {item.Price__C} - {item.Date__E}
 									</p>
