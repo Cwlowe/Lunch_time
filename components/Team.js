@@ -25,7 +25,7 @@ export default function Team() {
 			<h2 className={styles.section_header}>The Team</h2>
 			<div className={styles.team}>
 				{TeamMembers.map((member) => (
-					<div>
+					<div key={member.name}>
 						<h3>{member.name}</h3>
 						<p>
 							<a href={member.LinkedinURL}>
