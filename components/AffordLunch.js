@@ -1,17 +1,16 @@
 export default function AffordLunch(props) {
-	let total = props.amount;
-	let nextPayDate = new Date();
-	//  + 7 * props.cadence).slice(0, 10);
+	let total = parseInt(props.curr.funds);
+
 	for (let i = 0; i < props.expenses.length; i++) {
-		if (props.expenses.Date__E < nextPayDate) total += props.expenses.Price__C;
+		total -= props.expenses[i].Price__C;
 	}
-	console.log(props.expenses, 'hi');
 	return (
 		<section>
 			<title>Can I Afford Lunch?</title>
-			{total > 0 ? 'Yes!' : 'No'}
-			<p>Ending salary before next paycheck?</p>
-			total: {total}
+			<h1>Can I afford Lunch today?</h1>
+			<p>{total > 0 ? 'Yes!' : 'No'}</p>
+			<h2>Remaining funds before next paycheck?</h2>
+			<p>total: ${Math.round(100 * parseFloat(total)) / 100}</p>
 		</section>
 	);
 }

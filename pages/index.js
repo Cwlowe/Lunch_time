@@ -14,6 +14,7 @@ import AffordLunch from '../components/AffordLunch';
 import Salary from '../components/Salary';
 import Team from '../components/Team';
 import TechnologyUsed from '../components/TechnologyUsed';
+import MintBeanShoutout from '../components/MintBeanShoutout';
 
 const useStyles = makeStyles(() => ({
 	form: {
@@ -36,7 +37,8 @@ export default function Home() {
 	const [state, setState] = useState({
 		funds: 0,
 		lastPaid: '2021-04-21',
-		cadence: 0,
+		nextPay: '2021-05-05',
+		cadence: 2,
 		user: 'Josh',
 	});
 	const handleChange = (e)=>{
@@ -75,16 +77,17 @@ export default function Home() {
 				:
 				<>
 				<AffordLunch
-					amount={state.funds}
+					curr={state}
 					expenses={transactions.filter(
 						(each) =>
-							each.Date__E > state.lastPaid && each.User__F === state.user
+							new Date(each.Date__E) > new Date(state.lastPaid) &&
+							each.User__F === state.user &&
+							new Date(each.Date__E) <= new Date(state.nextPay)
 					)}
-					cadence={state.cadence}
 				/>
 				<Salary
-					adjustSalary={(newSal, date, cadence) =>
-						setState({ funds: newSal, lastPaid: date, cadence: cadence })
+					adjustSalary={({ funds, lastPaid, nextPay, cadence }) =>
+						setState((prev) => ({ ...prev, funds, lastPaid, nextPay, cadence }))
 					}
 					curr={state}
 				/>
@@ -92,7 +95,9 @@ export default function Home() {
 					{transactions
 						.filter(
 							(each) =>
-								each.Date__E > state.lastPaid && each.User__F === state.user
+								new Date(each.Date__E) > new Date(state.lastPaid) &&
+								each.User__F === state.user &&
+								new Date(each.Date__E) <= new Date(state.nextPay)
 						)
 						.map((item, idx) => {
 							return (
@@ -119,6 +124,7 @@ export default function Home() {
 			<footer className={styles.footer}>
 				<Team />
 				<TechnologyUsed />
+				<MintBeanShoutout />
 			</footer>
 		</div>
 	);
