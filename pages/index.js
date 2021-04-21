@@ -3,6 +3,7 @@ import HelloWorld from '../components/HelloWorld';
 import styles from '../styles/Home.module.css';
 import Salary from './Salary';
 import { useState } from 'react';
+import AffordLunch from './AffordLunch';
 import Team from './Team';
 
 export default function Home() {
@@ -10,8 +11,11 @@ export default function Home() {
 	const [state, setState] = useState({
 		funds: 0,
 		lastPaid: '2021-04-21',
-		cadence: 0,
+		nextPay: '2021-05-05',
+		cadence: 2,
+		user: 'Josh',
 	});
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -28,25 +32,39 @@ export default function Home() {
 					Get started by editing{' '}
 					<code className={styles.code}>pages/index.js</code>
 				</p>
-				<Salary
-					adjustSalary={(newSal, date, cadence) =>
-						setState({ funds: newSal, lastPaid: date, cadence: cadence })
-					}
-					state={state}
+				<AffordLunch
+					curr={state}
+					expenses={transactions.filter(
+						(each) =>
+							new Date(each.Date__E) > new Date(state.lastPaid) &&
+							each.User__F === state.user &&
+							new Date(each.Date__E) <= new Date(state.nextPay)
+					)}
 				/>
-				{/* <div className={styles.code}>
-					{transactions.map((item) => {
-						if (item.Date__E > state.lastPaid)
+				<Salary
+					adjustSalary={({ funds, lastPaid, nextPay, cadence }) =>
+						setState((prev) => ({ ...prev, funds, lastPaid, nextPay, cadence }))
+					}
+					curr={state}
+				/>
+				<div className={styles.code}>
+					{transactions
+						.filter(
+							(each) =>
+								new Date(each.Date__E) > new Date(state.lastPaid) &&
+								each.User__F === state.user &&
+								new Date(each.Date__E) <= new Date(state.nextPay)
+						)
+						.map((item, idx) => {
 							return (
-								<div key={item.ID__A || 0}>
+								<div key={idx}>
 									<p>
 										{item.Tag__D} - {item.Price__C} - {item.Date__E}
 									</p>
 								</div>
 							);
-					})}
-				</div> */}
-				<Team />
+						})}
+				</div>
 			</main>
 
 			<footer className={styles.footer}>
