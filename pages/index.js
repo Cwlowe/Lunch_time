@@ -3,6 +3,9 @@ import HelloWorld from '../components/HelloWorld';
 import styles from '../styles/Home.module.css';
 import Salary from './Salary';
 import { useState } from 'react';
+import Team from './Team';
+import TechnologyUsed from './TechnologyUsed';
+import MintBeanShoutout from './MintBeanShoutout';
 import AffordLunch from './AffordLunch';
 import Team from './Team';
 
@@ -63,8 +66,11 @@ export default function Home() {
 									</p>
 								</div>
 							);
-						})}
+					})}
 				</div>
+				<Team />
+				<TechnologyUsed />
+				<MintBeanShoutout />
 			</main>
 
 			<footer className={styles.footer}>
