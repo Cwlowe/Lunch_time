@@ -1,31 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Lunch Time
+
+## About
+
+Lunch time is an application that tells you if you can afford to buy lunch today. To use the app, start by entering the profile name you wish to use. Currently we have three user profiles built for you. Josh, Lisa and Kathy. Each profile pays different amounts for rent, groceries and bills. In the future we would like to allow users to set up their own profiles for use. Then enter the amount and date of your most recent paycheck along with how often you get paid. The application then makes a call to a google sheet using StepZen and GraphQL and returns all the bills you will have to pay between your last paycheck and your next paycheck. Calculating the differences, Lunch time will inform you if you can afford to buy lunch today and still pay all of your bills.
 
 ## Getting Started
 
-First, run the development server:
+To see the code and run locally.
+First, clone the repo and install the dependencies:
+
+```bash
+git clone
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Tech Stack
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- [React](https://reactjs.org/)
+- [Next.js](https://nextjs.org/docs) 
+- [StepZen](https://stepzen.com/)
+- [GraphQl](https://graphql.org/)
+- [Material UI](https://material-ui.com/)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Team
 
-## Learn More
+Calvin - [Linkedin](https://www.linkedin.com/in/calvin-lowe/) - [Github](https://github.com/Cwlowe)
+Leslie - [Linkedin](https://www.linkedin.com/in/leslie-meng//) - [Github](https://github.com/leslie-meng/)
+Kelsey - [Linkedin](https://www.linkedin.com/in/kelsey-m-schroeder/) - [Github](https://github.com/ka9kdc)
 
-To learn more about Next.js, take a look at the following resources:
+## Mintbean Learn A Thon
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project was part of a Mintbean week long Learn-a-thon. StepZen sponsored this Mintbean Learn-a-thon.
+The task was to build an application using GraphQL and StepZen.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[Mintbean](https://mintbean.io) ---- [StepZen](https://stepzen.com/)
 
 ## Deploy on Vercel
 
