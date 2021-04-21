@@ -17,6 +17,9 @@ import TechnologyUsed from '../components/TechnologyUsed';
 import MintBeanShoutout from '../components/MintBeanShoutout';
 
 const useStyles = makeStyles(() => ({
+	root:{
+		width:"50%"
+	},
 	form: {
 	  	margin:"5%"
 	},
@@ -46,7 +49,6 @@ export default function Home() {
 			...state, 
 			user:e.target.value
 		})
-		console.log(state)
 	}
 	const handleSubmit =(e)=>{
 		
@@ -62,18 +64,19 @@ export default function Home() {
 				<title>Lunch Time</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			
-			
 			<main className={styles.main}>
 				<h1 className={styles.title}>
 					Lunch Time
 				</h1>
 				{!submitted?
+				<div className={classes.root}>
 				<form className={classes.form}>
 					What is your name?
 					<TextField onChange={handleChange} className={classes.text} id="standard-basic" label="Name" />
 					<Button onClick={handleSubmit} className={classes.button} variant="contained" color="primary">Submit</Button>
 				</form>
+				<MintBeanShoutout />
+				</div>
 				:
 				<>
 				<AffordLunch
@@ -124,7 +127,7 @@ export default function Home() {
 			<footer className={styles.footer}>
 				<Team />
 				<TechnologyUsed />
-				<MintBeanShoutout />
+				
 			</footer>
 		</div>
 	);
