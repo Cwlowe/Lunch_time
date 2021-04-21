@@ -1,4 +1,7 @@
 import { useState } from 'react';
+//material-ui
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
 
 export default function Salary(props) {
 	const [state, setState] = useState({
@@ -23,7 +26,7 @@ export default function Salary(props) {
 			>
 				<label>
 					Paycheck Amt:
-					<input
+					<TextField
 						min={0}
 						type="number"
 						placeholder="paycheck amount"
@@ -33,11 +36,11 @@ export default function Salary(props) {
 							const { name, value } = event.target;
 							setState((prev) => ({ ...prev, [name]: value }));
 						}}
-					></input>
+					></TextField>
 				</label>
 				<label>
 					Last Paid Date:
-					<input
+					<TextField
 						max={new Date().toJSON().slice(0, 10)}
 						type="date"
 						name="lastPaid"
@@ -55,11 +58,11 @@ export default function Salary(props) {
 								}`,
 							}));
 						}}
-					></input>
+					></TextField>
 				</label>
 				<label>
 					Weeks between paycheck:
-					<input
+					<TextField
 						min={0}
 						max={51}
 						type="number"
@@ -80,7 +83,7 @@ export default function Salary(props) {
 								}`,
 							}));
 						}}
-					></input>
+					></TextField>
 				</label>
 				<input className="save-button" type="submit" value="Save"></input>
 			</form>
