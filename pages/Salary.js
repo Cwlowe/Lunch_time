@@ -1,17 +1,24 @@
 import { useState } from 'react';
+
 export default function Salary(props) {
 	const [state, setState] = useState({
 		funds: props.curr.funds,
 		lastPaid: props.curr.lastPaid,
 		cadence: props.curr.cadence,
+		nextPay: props.curr.nextPay,
 		edit: false,
 	});
+	Date.prototype.addDays = function (days) {
+		const date = new Date(this.valueOf());
+		date.setDate(date.getDate() + days);
+		return date;
+	};
 	return (
 		<section>
 			<form
 				onSubmit={(event) => {
 					event.preventDefault();
-					props.adjustSalary(state.funds, state.lastPaid, state.cadence);
+					props.adjustSalary(state);
 				}}
 			>
 				<label>
@@ -38,7 +45,15 @@ export default function Salary(props) {
 						value={state.lastPaid}
 						onChange={(event) => {
 							const { name, value } = event.target;
-							setState((prev) => ({ ...prev, [name]: value }));
+							let lastPaid = new Date(value);
+							let next = lastPaid.addDays(7 * state.cadence);
+							setState((prev) => ({
+								...prev,
+								[name]: value,
+								nextPay: `${next.getFullYear()}-${next.getMonth() + 1}-${
+									next.getDate() + 1
+								}`,
+							}));
 						}}
 					></input>
 				</label>
@@ -53,7 +68,17 @@ export default function Salary(props) {
 						value={state.cadence}
 						onChange={(event) => {
 							const { name, value } = event.target;
-							setState((prev) => ({ ...prev, [name]: value }));
+
+							let lastPaid = new Date(state.lastPaid);
+							let next = lastPaid.addDays(7 * value);
+
+							setState((prev) => ({
+								...prev,
+								[name]: value ? parseInt(value) : 0,
+								nextPay: `${next.getFullYear()}-${next.getMonth() + 1}-${
+									next.getDate() + 1
+								}`,
+							}));
 						}}
 					></input>
 				</label>
