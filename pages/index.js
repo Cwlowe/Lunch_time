@@ -5,6 +5,7 @@ import Salary from './Salary';
 import { useState } from 'react';
 import Team from './Team';
 import TechnologyUsed from './TechnologyUsed';
+import MintBeanShoutout from './MintBeanShoutout';
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
@@ -49,6 +50,7 @@ export default function Home() {
 				</div> */}
 				<Team />
 				<TechnologyUsed />
+				<MintBeanShoutout />
 			</main>
 
 			<footer className={styles.footer}>
