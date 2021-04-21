@@ -1,15 +1,42 @@
 import Head from 'next/head';
 import HelloWorld from '../components/HelloWorld';
 import styles from '../styles/Home.module.css';
-import Salary from './Salary';
+
 import { useState } from 'react';
-import Team from './Team';
-import TechnologyUsed from './TechnologyUsed';
-import MintBeanShoutout from './MintBeanShoutout';
-import AffordLunch from './AffordLunch';
+//material-ui
+import Grow from '@material-ui/core/Grow';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+
+//components
+import AffordLunch from '../components/AffordLunch';
+import Salary from '../components/Salary';
+import Team from '../components/Team';
+import TechnologyUsed from '../components/TechnologyUsed';
+import MintBeanShoutout from '../components/MintBeanShoutout';
+
+const useStyles = makeStyles(() => ({
+	root:{
+		width:"50%"
+	},
+	form: {
+	  	margin:"5%"
+	},
+	text:{
+		width:"100%"
+	},
+	button:{
+		width:"100%",
+		marginTop:"10%"
+	}
+
+}));
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
+	const classes = useStyles();
+	const [submitted, setSubmit] = useState(false)
 	const [state, setState] = useState({
 		funds: 0,
 		lastPaid: '2021-04-21',
@@ -17,23 +44,41 @@ export default function Home() {
 		cadence: 2,
 		user: 'Josh',
 	});
+	const handleChange = (e)=>{
+		setState({
+			...state, 
+			user:e.target.value
+		})
+	}
+	const handleSubmit =(e)=>{
+		
+		setSubmit(!submitted)
+	}
 
+	const handleBack=()=>{
+		setSubmit(!submitted)
+	}
 	return (
 		<div className={styles.container}>
 			<Head>
-				<title>Create Next App</title>
+				<title>Lunch Time</title>
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-
 			<main className={styles.main}>
 				<h1 className={styles.title}>
-					Welcome to <a href="https://nextjs.org">Next.js!</a>
+					Lunch Time
 				</h1>
-
-				<p className={styles.description}>
-					Get started by editing{' '}
-					<code className={styles.code}>pages/index.js</code>
-				</p>
+				{!submitted?
+				<div className={classes.root}>
+				<form className={classes.form}>
+					What is your name?
+					<TextField onChange={handleChange} className={classes.text} id="standard-basic" label="Name" />
+					<Button onClick={handleSubmit} className={classes.button} variant="contained" color="primary">Submit</Button>
+				</form>
+				<MintBeanShoutout />
+				</div>
+				:
+				<>
 				<AffordLunch
 					curr={state}
 					expenses={transactions.filter(
@@ -67,20 +112,22 @@ export default function Home() {
 							);
 						})}
 				</div>
-				<Team />
-				<TechnologyUsed />
-				<MintBeanShoutout />
+				<Button
+					variant="contained"
+				 	onClick={handleBack}
+					color="primary"
+				>{`< back`}
+				</Button>
+				</>
+				}
+				
+				
 			</main>
 
 			<footer className={styles.footer}>
-				<a
-					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Powered by{' '}
-					<img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-				</a>
+				<Team />
+				<TechnologyUsed />
+				
 			</footer>
 		</div>
 	);

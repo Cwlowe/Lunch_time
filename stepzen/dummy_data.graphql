@@ -3,7 +3,7 @@ interface Transactions {
   Purchase__B:  String 
   Price__C:  Float 
   Tag__D:  String 
-  Date__E:  String
+  Date__E:  String 
   User__F: String
 }
 type SheetsTransactions implements Transactions {}
