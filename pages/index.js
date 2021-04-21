@@ -11,7 +11,7 @@ export default function Home() {
 		funds: 0,
 		lastPaid: '2021-04-21',
 		cadence: 0,
-		// user: 'Calvin',
+		user: 'Josh',
 	});
 	return (
 		<div className={styles.container}>
@@ -32,7 +32,8 @@ export default function Home() {
 				<AffordLunch
 					amount={state.funds}
 					expenses={transactions.filter(
-						(each) => each.Date__E > state.lastPaid
+						(each) =>
+							each.Date__E > state.lastPaid && each.User__F === state.user
 					)}
 					cadence={state.cadence}
 				/>
@@ -44,7 +45,10 @@ export default function Home() {
 				/>
 				<div className={styles.code}>
 					{transactions
-						.filter((each) => each.Date__E > state.lastPaid)
+						.filter(
+							(each) =>
+								each.Date__E > state.lastPaid && each.User__F === state.user
+						)
 						.map((item, idx) => {
 							return (
 								<div key={idx}>

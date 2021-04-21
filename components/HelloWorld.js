@@ -8,6 +8,7 @@ const GET_STEPZEN = gql`
 			Tag__D
 			Date__E
 			ID__A
+			User__F
 		}
 	}
 `;
