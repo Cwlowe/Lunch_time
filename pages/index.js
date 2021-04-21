@@ -3,6 +3,7 @@ import HelloWorld from '../components/HelloWorld';
 import styles from '../styles/Home.module.css';
 import Salary from './Salary';
 import { useState } from 'react';
+import Team from './Team';
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
@@ -33,7 +34,7 @@ export default function Home() {
 					}
 					state={state}
 				/>
-				<div className={styles.code}>
+				{/* <div className={styles.code}>
 					{transactions.map((item) => {
 						if (item.Date__E > state.lastPaid)
 							return (
@@ -44,7 +45,8 @@ export default function Home() {
 								</div>
 							);
 					})}
-				</div>
+				</div> */}
+				<Team />
 			</main>
 
 			<footer className={styles.footer}>
