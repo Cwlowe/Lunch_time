@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css';
 import Salary from './Salary';
 import { useState } from 'react';
 import AffordLunch from './AffordLunch';
+import Team from './Team';
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
