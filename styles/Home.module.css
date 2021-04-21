@@ -114,6 +114,30 @@
   height: 1em;
 }
 
+.logo_links {
+  height: 2.5em;
+}
+.logo_tech {
+  height: 5em;
+  margin-top: 10px;
+}
+
+.team {
+  display: flex;
+}
+
+.team h3 {
+  text-align: center;
+}
+.team div {
+  margin: 0em 1em;
+}
+
+.section_header{
+  text-align: center;
+  margin-bottom: 0;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
