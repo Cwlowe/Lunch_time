@@ -3,6 +3,7 @@ import HelloWorld from '../components/HelloWorld';
 import styles from '../styles/Home.module.css';
 import Salary from './Salary';
 import { useState } from 'react';
+import AffordLunch from './AffordLunch';
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
@@ -28,6 +29,13 @@ export default function Home() {
 					Get started by editing{' '}
 					<code className={styles.code}>pages/index.js</code>
 				</p>
+				<AffordLunch
+					amount={state.funds}
+					expenses={transactions.filter(
+						(each) => each.Date__E > state.lastPaid
+					)}
+					cadence={state.cadence}
+				/>
 				<Salary
 					adjustSalary={(newSal, date, cadence) =>
 						setState({ funds: newSal, lastPaid: date, cadence: cadence })
@@ -35,8 +43,9 @@ export default function Home() {
 					curr={state}
 				/>
 				<div className={styles.code}>
-					{transactions.map((item, idx) => {
-						if (item.Date__E > state.lastPaid)
+					{transactions
+						.filter((each) => each.Date__E > state.lastPaid)
+						.map((item, idx) => {
 							return (
 								<div key={idx}>
 									<p>
@@ -44,7 +53,7 @@ export default function Home() {
 									</p>
 								</div>
 							);
-					})}
+						})}
 				</div>
 			</main>
 
