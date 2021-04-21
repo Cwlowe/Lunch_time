@@ -10,9 +10,11 @@ export default function Home() {
 	const [state, setState] = useState({
 		funds: 0,
 		lastPaid: '2021-04-21',
-		cadence: 0,
+		nextPay: '2021-05-05',
+		cadence: 2,
 		user: 'Josh',
 	});
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -30,16 +32,17 @@ export default function Home() {
 					<code className={styles.code}>pages/index.js</code>
 				</p>
 				<AffordLunch
-					amount={state.funds}
+					curr={state}
 					expenses={transactions.filter(
 						(each) =>
-							each.Date__E > state.lastPaid && each.User__F === state.user
+							new Date(each.Date__E) > new Date(state.lastPaid) &&
+							each.User__F === state.user &&
+							new Date(each.Date__E) <= new Date(state.nextPay)
 					)}
-					cadence={state.cadence}
 				/>
 				<Salary
-					adjustSalary={(newSal, date, cadence) =>
-						setState({ funds: newSal, lastPaid: date, cadence: cadence })
+					adjustSalary={({ funds, lastPaid, nextPay, cadence }) =>
+						setState((prev) => ({ ...prev, funds, lastPaid, nextPay, cadence }))
 					}
 					curr={state}
 				/>
@@ -47,7 +50,9 @@ export default function Home() {
 					{transactions
 						.filter(
 							(each) =>
-								each.Date__E > state.lastPaid && each.User__F === state.user
+								new Date(each.Date__E) > new Date(state.lastPaid) &&
+								each.User__F === state.user &&
+								new Date(each.Date__E) <= new Date(state.nextPay)
 						)
 						.map((item, idx) => {
 							return (
