@@ -29,7 +29,7 @@ export default function TechnologyUsed() {
 			<h2 className={styles.section_header}>Technologies Used</h2>
 			<div className={styles.team}>
 				{techImgURLs.map((tech) => (
-					<img src={tech.Url} alt={tech.name} className={styles.logo_tech} />
+					<img key={tech.name} src={tech.Url} alt={tech.name} className={styles.logo_tech} />
 				))}
 			</div>
 		</div>
