@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css';
 import Salary from './Salary';
 import { useState } from 'react';
 import Team from './Team';
+import TechnologyUsed from './TechnologyUsed';
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
@@ -47,6 +48,7 @@ export default function Home() {
 					})}
 				</div> */}
 				<Team />
+				<TechnologyUsed />
 			</main>
 
 			<footer className={styles.footer}>

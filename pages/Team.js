@@ -22,7 +22,7 @@ const TeamMembers = [
 export default function Team () {
     return (
         <div>
-            <h2 style={{textAlign: "center", marginBottom: 0}}>The Team</h2>
+            <h2 className={styles.section_header}>The Team</h2>
             <div className={styles.team}>
             {TeamMembers.map(member => (
                 <div>
