@@ -16,6 +16,7 @@ import Salary from '../components/Salary';
 import Team from '../components/Team';
 import TechnologyUsed from '../components/TechnologyUsed';
 import MintBeanShoutout from '../components/MintBeanShoutout';
+import Explainer from '../components/Explainer';
 
 const useStyles = makeStyles(() => ({
 	root:{
@@ -94,7 +95,7 @@ export default function Home() {
 				<h1 className={styles.title}>
 					Lunch Time
 				</h1>
-				{!submitted?
+				{!submitted ?
 				<div className={classes.root}>
 				<form className={classes.form}>
 					What is your name?
@@ -108,6 +109,7 @@ export default function Home() {
 					/>
 					<Button onClick={handleSubmit} className={classes.button} variant="contained" color="primary">Submit</Button>
 				</form>
+					<Explainer />
 				<MintBeanShoutout />
 				</div>
 				:
