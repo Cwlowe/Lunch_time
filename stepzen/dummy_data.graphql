@@ -4,6 +4,7 @@ interface Transactions {
   Price__C:  Float 
   Tag__D:  String 
   Date__E:  String 
+  User__F: String
 }
 type SheetsTransactions implements Transactions {}
 type Query {
