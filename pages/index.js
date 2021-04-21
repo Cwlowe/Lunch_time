@@ -7,7 +7,6 @@ import Team from './Team';
 import TechnologyUsed from './TechnologyUsed';
 import MintBeanShoutout from './MintBeanShoutout';
 import AffordLunch from './AffordLunch';
-import Team from './Team';
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
@@ -66,7 +65,7 @@ export default function Home() {
 									</p>
 								</div>
 							);
-					})}
+						})}
 				</div>
 				<Team />
 				<TechnologyUsed />
