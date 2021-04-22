@@ -35,7 +35,6 @@ export default function Home() {
 	});
 	const nameSet = new Set();
 	nameSet.add('Josh').add('Lisa').add('Kathy');
-
 	const handleChange = (e) => {
 		setState({
 			...state,

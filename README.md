@@ -1,5 +1,7 @@
 # Lunch Time
 
+Deployed at [https://lunchtime-62b9b.web.app/](https://lunchtime-62b9b.web.app/)
+
 ## About
 
 Lunch time is an application that tells you if you can afford to buy lunch today. To use the app, start by entering the profile name you wish to use. Currently we have three user profiles built for you. Josh, Lisa and Kathy. Each profile pays different amounts for rent, groceries and bills. In the future we would like to allow users to set up their own profiles for use. Then enter the amount and date of your most recent paycheck along with how often you get paid. The application then makes a call to a google sheet using StepZen and GraphQL and returns all the bills you will have to pay between your last paycheck and your next paycheck. Calculating the differences, Lunch time will inform you if you can afford to buy lunch today and still pay all of your bills.
@@ -43,8 +45,3 @@ The task was to build an application using GraphQL and StepZen.
 
 [Mintbean](https://mintbean.io) ---- [StepZen](https://stepzen.com/)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
