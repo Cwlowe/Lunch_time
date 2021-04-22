@@ -1,7 +1,10 @@
 import { useState } from 'react';
 //material-ui
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
+
+//css
+import styles from "../styles/Salary.module.css";
+import { Button, Grid } from '@material-ui/core';
 
 export default function Salary(props) {
 	const [state, setState] = useState({
@@ -19,27 +22,32 @@ export default function Salary(props) {
 	return (
 		<section>
 			<form
+				className={styles.form}
 				onSubmit={(event) => {
 					event.preventDefault();
 					props.adjustSalary(state);
 				}}
 			>
-				<label>
-					Paycheck Amt:
-					<TextField
-						min={0}
-						type="number"
-						placeholder="paycheck amount"
-						value={state.funds}
-						name="funds"
-						onChange={(event) => {
-							const { name, value } = event.target;
-							setState((prev) => ({ ...prev, [name]: value }));
-						}}
-					></TextField>
-				</label>
-				<label>
-					Last Paid Date:
+				<Grid container className={styles.form}>
+					<Grid item xs={6}>
+					<label>
+						<p>Enter your salary per month:</p>
+						<TextField
+							min={0}
+							type="number"
+							placeholder="Paycheck Amount"
+							value={state.funds}
+							name="funds"
+							onChange={(event) => {
+								const { name, value } = event.target;
+								setState((prev) => ({ ...prev, [name]: value }));
+							}}
+						></TextField>
+					</label>
+					</Grid>
+					<Grid item xs={6}>
+					<label>
+					<p>Last Paid Date:</p>
 					<TextField
 						max={new Date().toJSON().slice(0, 10)}
 						type="date"
@@ -60,8 +68,10 @@ export default function Salary(props) {
 						}}
 					></TextField>
 				</label>
-				<label>
-					Weeks between paycheck:
+					</Grid>
+					<Grid item xs={6}>
+					<label>
+					<p>Weeks between paycheck:</p>
 					<TextField
 						min={0}
 						max={51}
@@ -85,7 +95,17 @@ export default function Salary(props) {
 						}}
 					></TextField>
 				</label>
-				<input className="save-button" type="submit" value="Save"></input>
+					</Grid>
+				</Grid>
+				
+				<Button 
+					className={styles.button} 
+					variant="contained" 
+					color="primary" 
+					onClick={props.toggleHidden} 
+					type="submit"
+				>Enter</Button>
+				
 			</form>
 		</section>
 	);
