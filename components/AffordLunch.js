@@ -1,7 +1,6 @@
 import { Grid } from '@material-ui/core';
 import styles from '../styles/AffordLunch.module.css';
 import Expense from './Expenses';
-import Image from 'next/image'
 
 export default function AffordLunch(props) {
 	let total = parseInt(props.curr.funds);

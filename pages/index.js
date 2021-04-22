@@ -17,7 +17,6 @@ import TechnologyUsed from '../components/TechnologyUsed';
 import MintBeanShoutout from '../components/MintBeanShoutout';
 import Explainer from '../components/Explainer';
 import { Collapse, Container, Link } from '@material-ui/core';
-import next from 'next';
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
