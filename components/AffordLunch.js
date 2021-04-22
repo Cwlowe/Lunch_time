@@ -33,7 +33,7 @@ export default function AffordLunch(props) {
 			</Grid>
 			<Grid item xs={12}>
 				<Grid container justify="center" alignItems="center">
-				{randomFood(
+				{randomFood ? (
 					<>
 						<Grid item xs={12}>
 						<h2 className={styles.total}>{`That's ${Math.floor(
