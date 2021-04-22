@@ -107,7 +107,7 @@ export default function Home() {
 							</Button>
 						</form>
 						<Link href="#" onClick={toggleAboutus}>
-							Learn about our goals
+							{aboutusHidden ? 'Show less' : 'Learn about our goals'}
 						</Link>
 						<Collapse in={aboutusHidden}>
 							<Explainer />
