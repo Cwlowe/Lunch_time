@@ -31,7 +31,7 @@ export default function Salary(props) {
 				<Grid container className={styles.form}>
 					<Grid item xs={6}>
 						<label>
-							<p>Enter your salary per month:</p>
+							<p>Enter your last paycheck amount:</p>
 							<TextField
 								min={0}
 								type="number"

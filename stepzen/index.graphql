@@ -1,3 +1,4 @@
-schema @sdl(files: ["dummy_data.graphql"]) {
+
+schema @sdl(files: ["dummy_data.graphql", "expenses_data.graphql"]) {
     query: Query
 }
