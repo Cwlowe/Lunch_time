@@ -7,15 +7,16 @@ export default function AffordLunch(props) {
 	let total = parseInt(props.curr.funds);
 	const foods = Expense() || [];
 
+	
+	for (let i = 0; i < props.expenses.length; i++) {
+		total -= props.expenses[i].Price__C;
+	}
 	let afford = foods.length
 		? foods.filter((each) => each.Price__C <= total)
 		: [];
 	let randomFood = afford.length
 		? afford[Math.floor(Math.random() * afford.length)]
 		: null;
-	for (let i = 0; i < props.expenses.length; i++) {
-		total -= props.expenses[i].Price__C;
-	}
 
 	return (
 		<Grid container justify="center" alignItems="center">
@@ -32,7 +33,7 @@ export default function AffordLunch(props) {
 			</Grid>
 			<Grid item xs={12}>
 				<Grid container justify="center" alignItems="center">
-				{randomFood ? (
+				{randomFood(
 					<>
 						<Grid item xs={12}>
 						<h2 className={styles.total}>{`That's ${Math.floor(
