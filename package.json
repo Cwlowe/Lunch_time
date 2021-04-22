@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "predeploy": "npm run build && npm run export",
+    "deploy": "npm run predeploy && firebase deploy"
   },
   "dependencies": {
     "@apollo/client": "^3.3.13",

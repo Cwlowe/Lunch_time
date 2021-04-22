@@ -9,7 +9,7 @@ export default function AffordLunch(props) {
 	return (
 		<Grid container justify="center" alignItems="center">
 			<Grid item xs={5}>
-			<h2>Can I afford Lunch today?</h2>
+			<h2>Can I afford lunch today?</h2>
 			<p className={styles.total}>{total > 0 ? 'Yes!' : 'No'}</p>
 			</Grid>
 			<Grid item xs={5}>
