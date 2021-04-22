@@ -1,27 +1,27 @@
-import React from "react";
-import styles from "../styles/Home.module.css";
+import React from 'react';
+import styles from '../styles/Home.module.css';
 
 const TeamMembers = [
 	{
-		name: "Calvin",
-		LinkedinURL: "https://www.linkedin.com/in/calvin-lowe/",
-		GitHubURL: "https://github.com/Cwlowe",
+		name: 'Calvin',
+		LinkedinURL: 'https://www.linkedin.com/in/calvin-lowe/',
+		GitHubURL: 'https://github.com/Cwlowe',
 	},
 	{
-		name: "Leslie",
-		LinkedinURL: "https://www.linkedin.com/in/leslie-meng/",
-		GitHubURL: "https://github.com/leslie-meng",
+		name: 'Leslie',
+		LinkedinURL: 'https://www.linkedin.com/in/leslie-meng/',
+		GitHubURL: 'https://github.com/leslie-meng',
 	},
 	{
-		name: "Kelsey",
-		LinkedinURL: "https://www.linkedin.com/in/kelsey-m-schroeder/",
-		GitHubURL: "https://github.com/ka9kdc",
+		name: 'Kelsey',
+		LinkedinURL: 'https://www.linkedin.com/in/kelsey-m-schroeder/',
+		GitHubURL: 'https://github.com/ka9kdc',
 	},
 ];
 
 export default function Team() {
 	return (
-		<div>
+		<section>
 			<h2 className={styles.section_header}>The Team</h2>
 			<div className={styles.team}>
 				{TeamMembers.map((member) => (
@@ -46,6 +46,6 @@ export default function Team() {
 					</div>
 				))}
 			</div>
-		</div>
+		</section>
 	);
 }

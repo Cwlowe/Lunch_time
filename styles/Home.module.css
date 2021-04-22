@@ -17,11 +17,12 @@
 }
 
 .footer {
-  width: 100%;
-  border-top: 1px solid #eaeaea;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	width: 100%;
+	border-top: 1px solid #eaeaea;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 .footer img {
@@ -123,8 +124,8 @@
 }
 
 .logo_shoutouts {
-  height: 3em;
-  margin: 0em 1em;
+	height: 3em;
+	margin: 0em 1em;
 }
 
 .team {
@@ -144,36 +145,38 @@
 }
 
 .logo_links {
-  height: 2.5em;
+	height: 2.5em;
 }
 
 .team {
-  display: flex;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 
 .team h3 {
-  text-align: center;
+	text-align: center;
 }
 .team div {
-  margin: 0em 1em;
+	margin: 0em 1em;
 }
-.root{
-	width:100%;
+.root {
+	width: 100%;
 }
-.form{
-	margin:10%;
+.form {
+	margin: 10%;
 }
-.text{
-	margin-top:5%;
-	width:100%;
+.text {
+	margin-top: 5%;
+	width: 100%;
 }
-.button{
-	width:100%;
-	margin-top:10%;
+.button {
+	width: 100%;
+	margin-top: 10%;
 }
-.paper{
-	padding:5%;
-	margin-top:5%;
+.paper {
+	padding: 5%;
+	margin-top: 5%;
 }
 
 @media (max-width: 600px) {
