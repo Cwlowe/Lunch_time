@@ -7,7 +7,6 @@ import { useState } from 'react';
 import Grow from '@material-ui/core/Grow';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
 //components
@@ -17,40 +16,14 @@ import Team from '../components/Team';
 import TechnologyUsed from '../components/TechnologyUsed';
 import MintBeanShoutout from '../components/MintBeanShoutout';
 import Explainer from '../components/Explainer';
+import { Collapse, Container, Link } from '@material-ui/core';
 
-const useStyles = makeStyles(() => ({
-	root:{
-		width:"50%"
-	},
-	form: {
-	  	margin:"10%"
-	},
-	text:{
-		marginTop:"5%",
-		width:"100%"
-	},
-	button:{
-		width:"100%",
-		marginTop:"10%"
-	},
-	paper:{
-		padding:"10%",
-		marginTop:"5%"
-	},
-	transactions:{
-		marginTop:"5%",
-		borderRadius: "5px",
-		fontSize: "1.1rem",
-		fontFamily: "Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace"
-	}
-
-
-}));
 
 export default function Home() {
 	const transactions = HelloWorld() || [];
-	const classes = useStyles();
 	const [submitted, setSubmit] = useState(false)
+	const [hidden, setHidden] = useState(true)
+	const [aboutusHidden, setAboutus] = useState(true)
 	const [error,setError] = useState(false)
 	const [state, setState] = useState({
 		funds: 0,
@@ -61,7 +34,7 @@ export default function Home() {
 	});
 	const nameSet = new Set()
 	nameSet.add("Josh").add("Lisa").add("Kathy")
-
+	console.log(transactions)
 
 	const handleChange = (e)=>{
 		setState({
@@ -83,7 +56,18 @@ export default function Home() {
 	}
 
 	const handleBack=()=>{
+		setState({
+			...state, 
+			user:""
+		})
 		setSubmit(!submitted)
+	}
+	const toggleHidden = ()=>{
+		console.log(hidden)
+		setHidden(false)
+	}
+	const toggleAboutus = ()=>{
+		setAboutus(!aboutusHidden)
 	}
 	return (
 		<div className={styles.container}>
@@ -96,42 +80,50 @@ export default function Home() {
 					Lunch Time
 				</h1>
 				{!submitted ?
-				<div className={classes.root}>
-				<form className={classes.form}>
+				<Container maxWidth="sm" >
+				<form className={styles.form}>
 					What is your name?
 					<TextField 
 						error={error} 
 						onChange={handleChange} 
-						className={classes.text} 
+						className={styles.text} 
 						id="standard-basic" 
 						label="Name" 
 						helperText="Please input a value of Josh, Kathy, or Lisa"
 					/>
-					<Button onClick={handleSubmit} className={classes.button} variant="contained" color="primary">Submit</Button>
+					<Button onClick={handleSubmit} className={styles.button} variant="contained" color="primary">Submit</Button>
 				</form>
-					<Explainer />
-				<MintBeanShoutout />
-				</div>
+				<Link href="#" onClick={toggleAboutus}>Learn about our goals</Link>
+					<Collapse in={aboutusHidden}>
+						<Explainer />
+						<MintBeanShoutout />
+					</Collapse>
+				</Container>
 				:
 				<>
 				<Grow in={submitted} {...(submitted ? { timeout: 1000 } : {})}>
-				<Paper elevation={4} className={classes.paper}>
-					<AffordLunch
+				<Paper elevation={4} className={styles.paper}>
+					<Salary
+						adjustSalary={({ funds, lastPaid, nextPay, cadence }) =>
+							setState((prev) => ({ ...prev, funds, lastPaid, nextPay, cadence }))
+						}
+						curr={state}
+						toggleHidden={toggleHidden}
+					/>
+					{hidden?
+						null:
+						<AffordLunch
 						curr={state}
 						expenses={transactions.filter(
 							(each) =>
 								new Date(each.Date__E) > new Date(state.lastPaid) &&
 								each.User__F === state.user &&
 								new Date(each.Date__E) <= new Date(state.nextPay)
-						)}
-					/>
-					<Salary
-						adjustSalary={({ funds, lastPaid, nextPay, cadence }) =>
-							setState((prev) => ({ ...prev, funds, lastPaid, nextPay, cadence }))
-						}
-						curr={state}
-					/>
-					<div className={classes.transactions}>
+						)}/>
+					}
+					
+					
+					<div className={styles.code}>
 						<h2>Transactions</h2>
 						{transactions
 							.filter(
@@ -144,14 +136,14 @@ export default function Home() {
 								return (
 									<div key={idx}>
 										<p>
-											{item.Tag__D} - {item.Price__C} - {item.Date__E} - {item.User__F}
+											{item.Purchase__B} - {item.Tag__D}: {item.Price__C} | {item.Date__E} | {item.User__F}
 										</p>
 									</div>
 								);
 							})}
 					</div>
 					<Button
-						className={classes.button}
+						className={styles.button}
 						variant="contained"
 						onClick={handleBack}
 						color="primary"
@@ -167,6 +159,7 @@ export default function Home() {
 			</main>
 
 			<footer className={styles.footer}>
+				
 				<Team />
 				<TechnologyUsed />
 				
