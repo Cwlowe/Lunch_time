@@ -5,7 +5,8 @@ import FoodQuery from './FoodQuery';
 export default function AffordLunch(props) {
 	let total = parseInt(props.curr.funds);
 	const foods = FoodQuery() || [];
-	console.log(foods);
+	let afford = foods.filter((each) => each.Price__C < total);
+	let randomFood = afford[Math.floor(Math.random() * afford.length)];
 	for (let i = 0; i < props.expenses.length; i++) {
 		total -= props.expenses[i].Price__C;
 	}
@@ -20,6 +21,10 @@ export default function AffordLunch(props) {
 				<p className={styles.total}>
 					${Math.round(100 * parseFloat(total)) / 100}
 				</p>
+				<p className={styles.total}>{`That's ${Math.min(
+					total / randomFood.Price__C
+				)} ${randomFood.Food__A}s. ${randomFood.Desc__B}`}</p>
+				<img url={randomFood.Url__D} />
 			</Grid>
 		</Grid>
 	);
