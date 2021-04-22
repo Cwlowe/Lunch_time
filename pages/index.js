@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import HelloWorld from '../components/HelloWorld';
+import Expense from '../components/Expenses';
 import styles from '../styles/Home.module.css';
 
 import { useState } from 'react';
@@ -35,7 +36,7 @@ export default function Home() {
 	});
 	const nameSet = new Set();
 	nameSet.add('Josh').add('Lisa').add('Kathy');
-
+	console.log(Expense())
 	const handleChange = (e) => {
 		setState({
 			...state,

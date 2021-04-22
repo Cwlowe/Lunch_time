@@ -1,0 +1,13 @@
+interface Expenses { 
+  Food__A:  String 
+  Desc__B:  String 
+  Price__C:  Float 
+  Url__D:  String 
+}
+type SheetsExpenses implements Expenses {}
+type Query {
+  expenses(q:String!): [Expenses]
+  sheetsexpenses(q:String!): [SheetsExpenses]
+    @supplies(query:"expenses")
+    @rest(endpoint:"https://sheets.apis.stepzen.com/1ygBx65H7k1Qw7xCdvtAr6ONixJbQ_B6iKHqUObhevp0/1472823322")
+}
