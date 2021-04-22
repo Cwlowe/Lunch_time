@@ -24,6 +24,7 @@ export default function Home() {
 	const [submitted, setSubmit] = useState(false);
 	const [hidden, setHidden] = useState(true);
 	const [aboutusHidden, setAboutus] = useState(true);
+	const [seeAll, setSeeAll] = useState(false);
 	const [error, setError] = useState(false);
 	const [state, setState] = useState({
 		funds: 0,
@@ -70,6 +71,9 @@ export default function Home() {
 	};
 	const toggleAboutus = () => {
 		setAboutus(!aboutusHidden);
+	};
+	const toggleFilter = () => {
+		setSeeAll(!seeAll);
 	};
 	let total = state.funds;
 	let nextNextPaycheck = state.nextPay;
@@ -141,11 +145,22 @@ export default function Home() {
 
 								<div className={styles.code}>
 									<h2>Transactions</h2>
+									<Button
+										className={styles.button}
+										variant="contained"
+										onClick={toggleFilter}
+										color="primary"
+									>
+										{seeAll ? 'See Less' : 'See All'}
+									</Button>
 									{transactions
-										.filter(
-											(each) =>
-												new Date(each.Date__E) > new Date(state.lastPaid) &&
-												each.User__F === state.user
+										.filter((each) =>
+											seeAll
+												? new Date(each.Date__E) > new Date(state.lastPaid) &&
+												  each.User__F === state.user
+												: new Date(each.Date__E) > new Date(state.lastPaid) &&
+												  each.User__F === state.user &&
+												  new Date(each.Date__E) <= new Date(state.nextPay)
 										)
 										.map((item, idx) => {
 											if (
